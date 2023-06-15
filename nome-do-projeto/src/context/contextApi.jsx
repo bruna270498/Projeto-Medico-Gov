@@ -3,8 +3,36 @@ import PropTypes from 'prop-types';
 
 export const ContextApi = createContext();
 function ContextProvider({ children }) {
-    const values = useMemo(() => ({}), [])
- return (
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [fullName, setFullName] = useState('');
+    const [cpf, setCPF] = useState('');
+    const [rg, setRG] = useState('');
+    const [age, setAge] = useState();
+    const [gender, setGender] = useState('');
+    const [userType, setUserType] = useState('');
+    const [weight, setWeight] = useState();
+    const [height, setHeight] = useState();
+    const [cholesterol, setCholesterol] = useState();
+    const [fullNameError, setFullNameError] = useState('');
+    const [cpfError, setCpfError] = useState('');
+    const [rgError, setRgError] = useState('');
+
+   const [abdominalCircumference, setAbdominalCircumference] = useState();
+    const values = useMemo(() => ({
+        email, setEmail, fullNameError, setFullNameError,
+        password, setPassword,
+        fullName, setFullName, cpfError, setCpfError,
+        cpf, setCPF, rgError, setRgError,
+        rg, setRG, abdominalCircumference, setAbdominalCircumference,
+        age, setAge, cholesterol, setCholesterol,
+        gender, setGender,height, setHeight,
+        userType, setUserType,weight, setWeight
+    }), [email, setEmail, password, setPassword, fullName, setFullName, cpf, setCPF,
+        rg, setRG, age, setAge,gender, setGender, userType, setUserType, weight, setWeight,
+        height, setHeight, cholesterol, setCholesterol, abdominalCircumference, setAbdominalCircumference,
+        fullNameError, setFullNameError, rgError, setRgError, cpfError, setCpfError])
+    return (
     <ContextApi.Provider
       value={ values }
     >

@@ -1,11 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom'
+import { ContextApi } from '../context/contextApi';
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+    const {email, setEmail, password, setPassword} = useContext(ContextApi)
 
   const handleEmailChange = (event) => {
+    console.log(event.target.value)
     setEmail(event.target.value);
   };
 
@@ -15,9 +16,6 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Aqui você pode adicionar a lógica para autenticar o usuário
-    // usando o email e a senha fornecidos
-    // Simulando a autenticação com email e senha
     if (email === 'user@example.com' && password === 'password') {
     } else {
       alert('Email ou senha incorretos!');
@@ -48,6 +46,9 @@ function Login() {
         </div>
         <button type="submit">Entrar</button>
       </form>
+      <p>
+        Ainda não tem uma conta? <Link to="/signup">Cadastre-se</Link>
+      </p>
     </div>
   );
 }
