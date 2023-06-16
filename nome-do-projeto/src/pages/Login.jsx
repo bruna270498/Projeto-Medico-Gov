@@ -1,24 +1,33 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 import { ContextApi } from '../context/contextApi';
 
 function Login() {
-    const {email, setEmail, password, setPassword} = useContext(ContextApi)
+  const { email, setEmail, password, setPassword } = useContext(ContextApi);
+  const navigate = useNavigate();
 
-  const handleEmailChange = (event) => {
-    console.log(event.target.value)
-    setEmail(event.target.value);
+  const handleChange = ({target}) => {
+    switch (target.id) {
+      case 'email':
+        setEmail(target.value)
+        break;
+      case 'password':
+        setPassword(target.value)
+        break;
+      default:
+        break;
+    }
   };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (email === 'user@example.com' && password === 'password') {
+    validate();
+  };
+
+  const validate = () => {
+    if (email === 'user@com.com' && password === 'p') {
+      navigate('/patient');
     } else {
-      alert('Email ou senha incorretos!');
+      alert('Email ou senha invalidos')
     }
   };
 
@@ -30,21 +39,23 @@ function Login() {
           <input
             type="email"
             id="email"
-            placeholder='Email'
+            placeholder="Email"
             value={email}
-            onChange={handleEmailChange}
+            onChange={handleChange}
           />
         </div>
         <div>
           <input
             type="password"
             id="password"
-            placeholder='Senha'
+            placeholder="Senha"
             value={password}
-            onChange={handlePasswordChange}
+            onChange={handleChange}
           />
         </div>
-        <button type="submit">Entrar</button>
+        <button type="submit">
+          Entrar
+        </button>
       </form>
       <p>
         Ainda não tem uma conta? <Link to="/signup">Cadastre-se</Link>
