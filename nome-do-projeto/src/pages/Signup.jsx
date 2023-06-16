@@ -6,59 +6,65 @@ function Signup() {
     const { setAge, setCPF, setCholesterol, setFullName, setAbdominalCircumference,
         setGender, setHeight, setRG, setUserType, setWeight, age, cpf, cholesterol,
         fullName, abdominalCircumference, gender, height, rg, userType, weight,
-        setEmail, email, password, setPassword, healthData, setHealthData, healthDataPaciente,
+        setEmail, email, password, setPassword, setHealthData,
         setHealthDataPaciente, isDisabled, setIsDisabled,
     } = useContext(ContextApi);
     const navigate = useNavigate();
-    const handleFullNameChange = (event) => {
-        setFullName(event.target.value);
+    const handleChange = ({target}) => {
+        switch (target.id) {
+          case 'rg':
+            setRG(target.value);
+            break;
+          case 'cpf':
+            setCPF(target.value)
+            break;
+          case 'age':
+            setAge(target.value)
+            break;
+          case 'gender':
+            setGender(target.value)
+            break;
+          case 'userType':
+              setUserType(target.value)
+              break;
+          case 'weight': 
+            setWeight(target.value)
+            break;
+          case 'height': 
+            setHeight(target.value)
+            break;
+          case 'cholesterol':
+            setCholesterol(target.value)
+            break;
+          case 'abdominalCircumference':
+            setAbdominalCircumference(target.value)
+            break;
+          case 'senha':
+            setPassword(target.value)
+            break;
+          case 'email':
+            setEmail(target.value)
+            break;
+          case 'fullName':
+            setFullName(target.value)
+            break;
+          default:
+            break;
+        }
     };
-    
-    const handleCPFChange = (event) => {
-        setCPF(event.target.value);
-      };
-    
-      const handleRGChange = (event) => {
-        setRG(event.target.value);
-      };
-    
-      const handleAgeChange = (event) => {
-        setAge(event.target.value);
-      };
-    
-      const handleGenderChange = (event) => {
-        setGender(event.target.value);
-      };
-    
-      const handleUserTypeChange = (event) => {
-        setUserType(event.target.value);
-      };
-    
-      const handleWeightChange = (event) => {
-        setWeight(event.target.value);
-      };
-    
-      const handleHeightChange = (event) => {
-        setHeight(event.target.value);
-      };
-    
-      const handleCholesterolChange = (event) => {
-        setCholesterol(event.target.value);
-      };
-    
-      const handleAbdominalCircumferenceChange = (event) => {
-        setAbdominalCircumference(event.target.value);
-      };
-      const handleEmail = (event) => {
-        return setEmail(event.target.value)
-      };
-      const handlePassordChange = (event) => {
-        return setPassword(event.target.value)
-      }
       const handleSubmit = (event) => {
         event.preventDefault();
         if(userType === "paciente") {
           navigate("/patient")
+          setHealthDataPaciente({
+            'name': fullName, 'CPF': cpf, 'RG': rg, 'Idade': age,
+            'Email': email, 'Passorwd': password, 'Type': userType,
+            'Gênero': gender,
+            'healthData': {
+              'Peso': weight, 'Altura': height, 'Colesterol': cholesterol, 
+              'Abdominal': abdominalCircumference
+            }
+          })
         }
         if(userType === "médico") {
           navigate("/medico")
@@ -66,6 +72,16 @@ function Signup() {
         if(userType === "enfermeiro") {
           navigate("/enfermeiro")
         }
+        setHealthData({
+          'name': fullName,
+          'CPF': cpf,
+          'RG': rg,
+          'Idade': age,
+          'Email': email,
+          'Passorwd': password,
+          'Type': userType,
+          'Gênero': gender,
+        })
       };
       const validate = () => {
         if(!age || !gender || !userType || fullName.length < 10
@@ -91,7 +107,7 @@ function Signup() {
                 // type="email"
                 id="email"
                 value={email}
-                onChange={handleEmail}
+                onChange={handleChange}
                 required
               />
                {!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)&& <div className="error"><span>Email no formato invalido.</span></div>}
@@ -102,7 +118,7 @@ function Signup() {
                 type="password"
                 id="senha"
                 value={password}
-                onChange={handlePassordChange}
+                onChange={handleChange}
                 required
               />
                {!/^(?=.*[A-Z])(?=.*\d).{8,}$/.test(password) && <div className="error">
@@ -115,7 +131,7 @@ function Signup() {
                 type="text"
                 id="fullName"
                 value={fullName}
-                onChange={handleFullNameChange}
+                onChange={handleChange}
                 required
               />
                {(fullName.length < 10) && <div className="error">
@@ -128,7 +144,7 @@ function Signup() {
                 type="text"
                 id="cpf"
                 value={cpf}
-                onChange={handleCPFChange}
+                onChange={handleChange}
                 required
               />
             </div>
@@ -141,7 +157,7 @@ function Signup() {
                 type="text"
                 id="rg"
                 value={rg}
-                onChange={handleRGChange}
+                onChange={handleChange}
                 required
               />
             </div>
@@ -154,13 +170,13 @@ function Signup() {
                 type="number"
                 id="age"
                 value={age}
-                onChange={handleAgeChange}
+                onChange={handleChange}
                 required
               />
             </div>
             <div>
               <label htmlFor="gender">Gênero:</label>
-              <select id="gender" value={gender} onChange={handleGenderChange} required>
+              <select id="gender" value={gender} onChange={handleChange} required>
                 <option value="">Selecione</option>
                 <option value="masculino">Masculino</option>
                 <option value="feminino">Feminino</option>
@@ -168,7 +184,7 @@ function Signup() {
             </div>
             <div>
               <label htmlFor="userType">Tipo de Usuário:</label>
-              <select id="userType" value={userType} onChange={handleUserTypeChange} required>
+              <select id="userType" value={userType} onChange={handleChange} required>
                 <option value="">Selecione</option>
                 <option value="paciente">Paciente</option>
                 <option value="médico">Médico</option>
@@ -184,7 +200,7 @@ function Signup() {
                     type="number"
                     id="weight"
                     value={weight}
-                    onChange={handleWeightChange}
+                    onChange={handleChange}
                   />
                 </div>
                 <div>
@@ -193,7 +209,7 @@ function Signup() {
                    type="number"
                     id="height"
                     value={height}
-                    onChange={handleHeightChange}
+                    onChange={handleChange}
                   />
                 </div>
                 <div>
@@ -202,7 +218,7 @@ function Signup() {
                     type="number"
                     id="cholesterol"
                     value={cholesterol}
-                    onChange={handleCholesterolChange}
+                    onChange={handleChange}
                   />
                 </div>
                 <div>
@@ -211,7 +227,7 @@ function Signup() {
                     type="number"
                     id="abdominalCircumference"
                     value={abdominalCircumference}
-                    onChange={handleAbdominalCircumferenceChange}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
