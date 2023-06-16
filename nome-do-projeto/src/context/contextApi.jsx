@@ -14,32 +14,56 @@ function ContextProvider({ children }) {
     const [weight, setWeight] = useState();
     const [height, setHeight] = useState();
     const [cholesterol, setCholesterol] = useState();
-    const [fullNameError, setFullNameError] = useState('');
-    const [cpfError, setCpfError] = useState('');
-    const [rgError, setRgError] = useState('');
     const [scheduleDate, setScheduleDate] = useState('');
     const [scheduleTime, setScheduleTime] = useState('');
     const [professional, setProfessional] = useState('');
     const [appointmentType, setAppointmentType] = useState('');
     const [appointments, setAppointments] = useState([]);
     const [history, setHistory] = useState([]);
+    const [isDisabled, setIsDisabled] = useState(true)
+    const [healthDataPaciente, setHealthDataPaciente] = useState({
+      'name': '',
+      'CPF': '',
+      'RG': '',
+      'Idade': '',
+      'Email': '',
+      'Passorwd': '',
+      'Type': '',
+      'Gênero': '',
+      'healthData': {
+        'Peso': '',
+        'Altura': '',
+        'Colesterol': '',
+        'Abdominal': ''
+      }
+    });
+    const [healthData, setHealthData] = useState({
+      'name': '',
+      'CPF': '',
+      'RG': '',
+      'Idade': '',
+      'Email': '',
+      'Passorwd': '',
+      'Type': '',
+      'Gênero': '',
+    })
 
    const [abdominalCircumference, setAbdominalCircumference] = useState();
     const values = useMemo(() => ({
-        email, setEmail, fullNameError, setFullNameError,
+        email, setEmail,
         password, setPassword, scheduleDate, setScheduleDate,
-        fullName, setFullName, cpfError, setCpfError,
-        cpf, setCPF, rgError, setRgError, professional, setProfessional,
+        fullName, setFullName, healthDataPaciente, setHealthDataPaciente,
+        cpf, setCPF, professional, setProfessional, isDisabled, setIsDisabled,
         rg, setRG, abdominalCircumference, setAbdominalCircumference,
         age, setAge, cholesterol, setCholesterol, scheduleTime, setScheduleTime,
-        gender, setGender,height, setHeight, appointments, setAppointments,
-        userType, setUserType,weight, setWeight, history, setHistory, appointmentType, setAppointmentType,
-    }), [email, setEmail, password, setPassword, fullName, setFullName, cpf, setCPF,
-        rg, setRG, age, setAge,gender, setGender, userType, setUserType, weight, setWeight,
+        gender, setGender,height, setHeight, appointments, setAppointments, healthData, setHealthData,
+        userType, setUserType,weight, setWeight, history, setHistory, appointmentType, setAppointmentType
+    }), [email, setEmail, password, setPassword, fullName, setFullName, cpf, setCPF, isDisabled, setIsDisabled,
+        rg, setRG, age, setAge, gender, setGender, userType, setUserType, weight, setWeight,
         height, setHeight, cholesterol, setCholesterol, abdominalCircumference, setAbdominalCircumference,
-        fullNameError, setFullNameError, rgError, setRgError, cpfError, setCpfError, scheduleDate, 
-        setScheduleDate, history, setHistory, appointments, setAppointments, appointmentType, setAppointmentType,
-        professional, setProfessional, scheduleTime, setScheduleTime])
+        , scheduleDate, setScheduleDate, history, setHistory, appointments, setAppointments, appointmentType,
+        setAppointmentType, professional, setProfessional, scheduleTime, setScheduleTime, healthDataPaciente,
+        setHealthDataPaciente, healthData, setHealthData])
     return (
     <ContextApi.Provider
       value={ values }

@@ -6,7 +6,8 @@ function Signup() {
     const { setAge, setCPF, setCholesterol, setFullName, setAbdominalCircumference,
         setGender, setHeight, setRG, setUserType, setWeight, age, cpf, cholesterol,
         fullName, abdominalCircumference, gender, height, rg, userType, weight,
-        cpfError, setCpfError, rgError, setRgError, fullNameError, setFullNameError
+        setEmail, email, password, setPassword, healthData, setHealthData, healthDataPaciente,
+        setHealthDataPaciente, isDisabled, setIsDisabled,
     } = useContext(ContextApi);
     const navigate = useNavigate();
     const handleFullNameChange = (event) => {
@@ -48,28 +49,14 @@ function Signup() {
       const handleAbdominalCircumferenceChange = (event) => {
         setAbdominalCircumference(event.target.value);
       };
-      const validateFullName = () => {
-        return (fullName.length < 10) ? setFullNameError('O nome deve ter no mínimo 10 caracteres.') :
-          setFullNameError('');
+      const handleEmail = (event) => {
+        return setEmail(event.target.value)
       };
-    
-      const validateCPF = () => {
-        return (cpf.length < 11) ? setCpfError('O CPF deve ter no mínimo 11 caracteres.') :
-          setCpfError('');
-      };
-    
-      const validateRG = () => {
-        return (rg.length < 9) ? setRgError('O RG deve ter no mínimo 9 caracteres.') :
-          setRgError('')
-      };
-    
+      const handlePassordChange = (event) => {
+        return setPassword(event.target.value)
+      }
       const handleSubmit = (event) => {
         event.preventDefault();
-        // Lógica de envio do formulário
-        if (!fullName || !cpf || !rg || !age || !gender || !userType) {
-          alert('Por favor, preencha todos os campos obrigatórios.');
-          return;
-        }
         if(userType === "paciente") {
           navigate("/patient")
         }
@@ -80,13 +67,48 @@ function Signup() {
           navigate("/enfermeiro")
         }
       };
-      validateFullName();
-      validateCPF();
-      validateRG();  
+      const validate = () => {
+        if(!age || !gender || !userType || fullName.length < 10
+          || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) 
+          || !/^(?=.*[A-Z])(?=.*\d).{8,}$/.test(password)
+          || !/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(cpf) 
+          || !/^\d{2}\.\d{3}\.\d{3}-\d{1}$/.test(rg)
+          ) {
+          setIsDisabled(true)
+        }
+        else {
+          setIsDisabled(false)
+        }
+      }
+      validate()
       return (
         <div>
           <h2>Cadastro</h2>
           <form onSubmit={handleSubmit}>
+          <div>
+              <label htmlFor="email">Email:</label>
+              <input
+                // type="email"
+                id="email"
+                value={email}
+                onChange={handleEmail}
+                required
+              />
+               {!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)&& <div className="error"><span>Email no formato invalido.</span></div>}
+            </div>
+            <div>
+              <label htmlFor="senha">Senha:</label>
+              <input
+                type="password"
+                id="senha"
+                value={password}
+                onChange={handlePassordChange}
+                required
+              />
+               {!/^(?=.*[A-Z])(?=.*\d).{8,}$/.test(password) && <div className="error">
+                <span>Senha precisa ter no mínimo 8 caracteries, letra maiscula e um numero</span>
+                </div>}
+            </div>
             <div>
               <label htmlFor="fullName">Nome Completo:</label>
               <input
@@ -96,30 +118,36 @@ function Signup() {
                 onChange={handleFullNameChange}
                 required
               />
-               {fullNameError && <div className="error">{fullNameError}</div>}
+               {(fullName.length < 10) && <div className="error">
+                <span>O nome deve ter no mínimo 10 caracteres.</span>
+                </div>}
             </div>
             <div>
               <label htmlFor="cpf">CPF:</label>
               <input
-                type="number"
+                type="text"
                 id="cpf"
                 value={cpf}
                 onChange={handleCPFChange}
                 required
               />
             </div>
-            {cpfError && <div className="error">{cpfError}</div>}
+            { !/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(cpf)  && <div className="error">
+              <span>O CPF deve estar escrito dessa forma 111.111.111-56.</span>
+            </div>}
             <div>
               <label htmlFor="rg">RG:</label>
               <input
-                type="number"
+                type="text"
                 id="rg"
                 value={rg}
                 onChange={handleRGChange}
                 required
               />
             </div>
-            {rgError && <div className="error">{rgError}</div>}
+            {!/^\d{2}\.\d{3}\.\d{3}-\d{1}$/.test(rg) && <div className="error">
+              <span>O RG deve estar escrito dessa forma 11.222.222-1.</span>
+              </div>}
             <div>
               <label htmlFor="age">Idade:</label>
               <input
@@ -188,7 +216,11 @@ function Signup() {
                 </div>
               </div>
             )}
-            <button type="submit" onClick={handleSubmit}>Cadastrar</button>
+            <button 
+            type="submit" 
+            onClick={handleSubmit} 
+            disabled={isDisabled}
+            >Cadastrar</button>
           </form>
         </div>
       )
