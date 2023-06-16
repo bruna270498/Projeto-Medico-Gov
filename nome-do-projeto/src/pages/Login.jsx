@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ContextApi } from '../context/contextApi';
+import '../style/page/login.sass'
 
 function Login() {
   const { email, setEmail, password, setPassword } = useContext(ContextApi);
@@ -32,35 +33,45 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className='login-container'>
+    <h2>Login</h2>
+    <form onSubmit={handleSubmit}>
+      <div className="field">
+        <p className="control has-icons-left has-icons-right">
           <input
+            className="input"
             type="email"
             id="email"
             placeholder="Email"
             value={email}
             onChange={handleChange}
           />
-        </div>
-        <div>
+        </p>
+      </div>
+      <div className="field">
+        <p className="control has-icons-left">
           <input
+            className="input"
             type="password"
             id="password"
             placeholder="Senha"
             value={password}
             onChange={handleChange}
           />
-        </div>
-        <button type="submit">
-          Entrar
-        </button>
-      </form>
-      <p>
-        Ainda não tem uma conta? <Link to="/signup">Cadastre-se</Link>
-      </p>
-    </div>
+        </p>
+      </div>
+      <div className="field">
+        <p className="control">
+          <button className="button is-success" type="submit">
+            Login
+          </button>
+        </p>
+      </div>
+    </form>
+    <p>
+      Ainda não tem uma conta? <Link to="/signup">Cadastre-se</Link>
+    </p>
+  </div>
   );
 }
 
