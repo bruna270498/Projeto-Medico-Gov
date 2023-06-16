@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { ContextApi } from '../context/contextApi';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
     const { setAge, setCPF, setCholesterol, setFullName, setAbdominalCircumference,
@@ -7,6 +8,7 @@ function Signup() {
         fullName, abdominalCircumference, gender, height, rg, userType, weight,
         cpfError, setCpfError, rgError, setRgError, fullNameError, setFullNameError
     } = useContext(ContextApi);
+    const navigate = useNavigate();
     const handleFullNameChange = (event) => {
         setFullName(event.target.value);
     };
@@ -68,11 +70,20 @@ function Signup() {
           alert('Por favor, preencha todos os campos obrigatórios.');
           return;
         }
+        if(userType === "paciente") {
+          navigate("/patient")
+        }
+        if(userType === "médico") {
+          navigate("/medico")
+        }
+        if(userType === "enfermeiro") {
+          navigate("/enfermeiro")
+        }
       };
       validateFullName();
       validateCPF();
       validateRG();  
-    return (
+      return (
         <div>
           <h2>Cadastro</h2>
           <form onSubmit={handleSubmit}>
@@ -177,8 +188,9 @@ function Signup() {
                 </div>
               </div>
             )}
-            <button type="submit">Cadastrar</button>
+            <button type="submit" onClick={handleSubmit}>Cadastrar</button>
           </form>
-        </div>)
+        </div>
+      )
 }
 export default Signup;
