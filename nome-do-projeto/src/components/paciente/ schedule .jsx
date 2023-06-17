@@ -39,52 +39,56 @@ function Schedule() {
     };
     return(
     <div>
-        <h3>Agendar Consulta</h3>
-        <form onSubmit={handleAppointmentSubmit}>
+        <h3 className="title2">Agendar Consulta</h3>
+        <form className="shedule" onSubmit={handleAppointmentSubmit}>
             <div>
-                <label htmlFor="scheduleDate">Data:</label>
+                <label className="input" htmlFor="scheduleDate">Data:</label>
                 <input
                 type="date"
                 id="scheduleDate"
+                className="input"
                 value={scheduleDate}
                 onChange={handleScheduleDateChange}
                 required
                 />
             </div>
             <div>
-                <label htmlFor="scheduleTime">Hora:</label>
+                <label className="input"  htmlFor="scheduleTime">Hora:</label>
                 <input
                 type="time"
                 id="scheduleTime"
+                className="input"
                 value={scheduleTime}
                 onChange={handleScheduleTimeChange}
                 required
                 />
             </div>
             <div>
-                <label htmlFor="professional">Profissional:</label>
+                <label className="input"  htmlFor="professional">Profissional:</label>
                 <input
                 type="text"
                 id="professional"
+                className="input2"
                 value={professional}
                 onChange={handleProfessionalChange}
                 required
                 />
             </div>
             <div>
-               <label htmlFor="appointmentType">Tipo de Consulta:</label>
+               <label className="input"  htmlFor="appointmentType">Tipo de Consulta:</label>
                <select
                id="appointmentType"
                value={appointmentType}
+               className="input"
                onChange={handleAppointmentTypeChange}
                required
                >
-                <option value="">Selecione</option>
-                <option value="presencial">Presencial</option>
-                <option value="remota">Remota</option>
+                <option className="selected" value="">Selecione</option>
+                <option className="selected" value="presencial">Presencial</option>
+                <option className="selected" value="remota">Remota</option>
               </select>
             </div>
-            <button type="submit">Agendar</button>
+            <button className="is-success" type="submit">Agendar</button>
         </form>
     </div>
     )

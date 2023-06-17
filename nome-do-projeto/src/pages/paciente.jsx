@@ -6,7 +6,7 @@ import '../style/page/pagePatient.sass'
 
 function PatientPage() {
     return(
-        <div className="login-container ">
+        <div className="login-containe ">
             <h2 className="title">Página Principal do Paciente</h2>
             <Schedule />
             <AppointmentsScheduled />

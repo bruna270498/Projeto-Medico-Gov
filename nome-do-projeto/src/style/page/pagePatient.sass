@@ -1,7 +1,52 @@
 @import 'variaveis'
+@import 'functions'
+$background-image: url('https://img.freepik.com/vetores-premium/fundo-do-conceito-de-medicina-e-ciencia_41814-21.jpg')
 
-.login-container 
-  /* Estilos para dispositivos móveis */
+
+.login-containe
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: center
+  background-image: $background-image
+  padding: 0
+  margin: 0
+
   @media (max-width: 767px) 
      .title
-       font-family: $fontyTitle
+       +estilizar-titulo(black, 20px)
+       text-align: center
+       padding: 0
+       padding-top: 5%
+
+     .title2
+       +estilizar-titulo(blue, 16px)
+       font-style: italic
+       margin-left: 10%
+       margin-right: 10%
+       margin-bottom: -8%
+
+     .shedule
+       width: 80%
+       margin-top: 10%
+       margin-left: 10%
+
+     .input
+       font-size: 17px
+       font-family: $fontyDefaul
+       margin-right: 2%
+       margin-bottom: 3%
+
+     .input2
+       font-size: 17px
+       width:180px
+       margin-right: 2%
+       margin-bottom: 3%
+
+     .selected
+       font-family: fontyDefaul
+       font-size: 14px
+
+     .is-success
+       +estilo-botao(blue, white, 0, 17px, 5%, 2%)
+       font-family: fontyDefaul
+       font-weight: bold
