@@ -1,11 +1,18 @@
+@import 'variaveis'
 .login-container 
   /* Estilos para dispositivos móveis */
   @media (max-width: 767px) 
     /* Exemplo de estilos para dispositivos móveis */
     padding: 20px
-
+    margin-top: 20%
+    border-radius: 5%
+    margin-left: 10%
+    margin-right: 10%
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)
     h2 
       font-size: 24px
+      text-align: center
+      font-family: $fontyTitle
     
 
     form 
@@ -17,4 +24,19 @@
     p
       margin-top: 20px
       text-align: center
-      font-size: 14px
+      font-size: 15px
+      font-family: $fontyDefaul
+
+    .is-success
+      background-color: $corGreen
+      color: white
+      padding: 2%
+      border-radius: 10%
+      font-size: 15px
+      border: 0
+
+    .signup
+      font-family: $fontyDefaul
+      text-decoration: none
+      color: $corGreen
+      font-weight: bold

@@ -34,42 +34,42 @@ function Login() {
 
   return (
     <div className='login-container'>
-    <h2>Login</h2>
+    <h2>LOGIN</h2>
     <form onSubmit={handleSubmit}>
+    <div className="field">
+          <p className="control has-icons-left has-icons-right">
+            <input
+              className="input"
+              type="email"
+              id='email'
+              placeholder="Email"
+              value={email}
+              onChange={handleChange}
+            />
+          </p>
+        </div>
+        <div className="field">
+          <p className="control has-icons-left">
+            <input
+              className="input"
+              type="password"
+              id='password'
+              placeholder="Senha"
+              value={password}
+              onChange={handleChange}
+            />
+          </p>
+        </div>
       <div className="field">
-        <p className="control has-icons-left has-icons-right">
-          <input
-            className="input"
-            type="email"
-            id="email"
-            placeholder="Email"
-            value={email}
-            onChange={handleChange}
-          />
-        </p>
-      </div>
-      <div className="field">
-        <p className="control has-icons-left">
-          <input
-            className="input"
-            type="password"
-            id="password"
-            placeholder="Senha"
-            value={password}
-            onChange={handleChange}
-          />
-        </p>
-      </div>
-      <div className="field">
-        <p className="control">
-          <button className="button is-success" type="submit">
+        <p className="buttons">
+        <button className="button is-success">
             Login
           </button>
         </p>
       </div>
     </form>
     <p>
-      Ainda não tem uma conta? <Link to="/signup">Cadastre-se</Link>
+      Ainda não tem uma conta? <Link className='signup' to="/signup">Cadastre-se</Link>
     </p>
   </div>
   );
