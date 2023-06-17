@@ -21,19 +21,19 @@ function AppointmentsScheduled() {
         setHistory([...history, newHistory]);
     };
     return(
-        <div>
-            <h3>Consultas Agendadas</h3>
+        <div className="shules">
+            <h3 className="title3">Consultas Agendadas</h3>
             {appointments.length === 0 ? (
             <p>Nenhuma consulta agendada.</p>
             ) : (
-            <ul>
+            <ul className="ul">
                 {appointments.map((appointment, index) => (
                 <li key={index}>
                     Data: {appointment.date}, Hora: {appointment.time}, Profissional: {appointment.professional}, Tipo: {appointment.type}, Status: {appointment.status}
                     {appointment.status !== 'cancelada' && (
-                    <button onClick={() => handleAppointmentCancel(index)}>Cancelar</button>
+                    <button className='is-success' onClick={() => handleAppointmentCancel(index)}>Cancelar</button>
                     )}
-                    <button onClick={() => handleAppointmentHistory(index)}>Histórico</button>
+                    <button className='is-success' onClick={() => handleAppointmentHistory(index)}>Histórico</button>
                 </li>
                 ))}
             </ul>

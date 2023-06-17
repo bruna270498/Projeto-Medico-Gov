@@ -24,6 +24,10 @@ $background-image: url('https://img.freepik.com/vetores-premium/fundo-do-conceit
        margin-left: 10%
        margin-right: 10%
        margin-bottom: -8%
+       
+     .title3
+       +estilizar-titulo(blue, 16px)
+       font-style: italic
 
      .shedule
        width: 80%
@@ -47,6 +51,21 @@ $background-image: url('https://img.freepik.com/vetores-premium/fundo-do-conceit
        font-size: 14px
 
      .is-success
-       +estilo-botao(blue, white, 0, 17px, 5%, 2%)
+       +estilo-botao(blue, white, 0, 15px, 5%, 1%)
        font-family: fontyDefaul
        font-weight: bold
+       margin-left: 1%
+
+     .shules
+       margin-top: 15%
+       margin-left: 10%
+       margin-right: 10%
+     
+     ul
+       list-style: none
+       +estilo-texto(black, 17px, $fontyDefaul)
+       margin-left: -13%
+
+     p
+      +estilo-texto(black, 17px, $fontyDefaul)
+

@@ -4,8 +4,8 @@ import { ContextApi } from "../../context/contextApi";
 function History() {
     const { history } = useContext(ContextApi);
     return(
-        <div>
-            <h3>Histórico de Consultas</h3>
+        <div className="shules">
+            <h3 className="title3">Histórico de Consultas</h3>
             {history.length === 0 ? (
             <p>Nenhum histórico de consulta.</p>
             ) : (
