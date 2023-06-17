@@ -1,4 +1,6 @@
 @import 'variaveis'
+@import 'functions'
+
 .login-container 
   /* Estilos para dispositivos móveis */
   @media (max-width: 767px) 
@@ -9,10 +11,10 @@
     margin-left: 10%
     margin-right: 10%
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)
+
     h2 
-      font-size: 24px
+      +estilizar-titulo($fontyTitle, 24px)
       text-align: center
-      font-family: $fontyTitle
     
 
     form 
@@ -22,18 +24,12 @@
         margin-bottom: 10px
       
     p
+      +estilizar-titulo($fontyDefaul, 15px)
       margin-top: 20px
       text-align: center
-      font-size: 15px
-      font-family: $fontyDefaul
 
     .is-success
-      background-color: $corGreen
-      color: white
-      padding: 2%
-      border-radius: 10%
-      font-size: 15px
-      border: 0
+      +estilo-botao($corGreen, white, 0, 15px, 10%, 2%)
 
     .signup
       font-family: $fontyDefaul
