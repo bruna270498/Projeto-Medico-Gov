@@ -5,7 +5,7 @@ import Signup from './pages/Signup';
 import PatientPage from './pages/paciente';
 function App() {
   return (
-    <div>
+    <div className='apps'>
       <Routes>
         <Route exact path="/signup" element={<Signup />}/>
         <Route exact path="/" element={ <Login/> }/>

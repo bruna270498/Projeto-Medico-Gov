@@ -1,0 +1,28 @@
+@import 'functions'
+
+.apps
+  @media (max-width: 767px) 
+   .form
+     display: flex
+     flex-direction: column
+     text-alin: center
+     justify-content: center
+
+   .inputs
+     +estilo-texto(black, 17px, 0)
+     width: 250px
+
+   .error
+     +estilo-texto(red, 14px, bold)
+     margin-bottom: 2%
+
+   .title
+     +estilizar-titulo($corGreen, 25px)
+
+   .title2
+     +estilizar-titulo($corGreen, 16px)
+     font-style: italic
+     
+   .text
+     +estilo-texto(black, 16px, $fontyDefaul)
+     margin-right: 2%

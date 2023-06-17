@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { ContextApi } from '../context/contextApi';
 import { useNavigate } from 'react-router-dom';
+import '../style/page/signup.sass'
 
 function Signup() {
     const { setAge, setCPF, setCholesterol, setFullName, setAbdominalCircumference,
@@ -98,84 +99,96 @@ function Signup() {
       }
       validate()
       return (
-        <div>
-          <h2>Cadastro</h2>
-          <form onSubmit={handleSubmit}>
+        <div className='login-container'>
+          <h2 className='title'>Cadastro</h2>
+          <form className='form' onSubmit={handleSubmit}>
           <div>
-              <label htmlFor="email">Email:</label>
+              {/* <label htmlFor="email">Email:</label> */}
               <input
                 // type="email"
                 id="email"
                 value={email}
+                className='inputs'
+                placeholder='E-mail'
                 onChange={handleChange}
                 required
               />
                {!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)&& <div className="error"><span>Email no formato invalido.</span></div>}
             </div>
             <div>
-              <label htmlFor="senha">Senha:</label>
+              {/* <label htmlFor="senha">Senha:</label> */}
               <input
                 type="password"
+                placeholder='Senha'
                 id="senha"
+                className='inputs'
                 value={password}
                 onChange={handleChange}
                 required
               />
                {!/^(?=.*[A-Z])(?=.*\d).{8,}$/.test(password) && <div className="error">
-                <span>Senha precisa ter no mínimo 8 caracteries, letra maiscula e um numero</span>
+                <span>Exemple de senha:(moaPs123)</span>
                 </div>}
             </div>
             <div>
-              <label htmlFor="fullName">Nome Completo:</label>
+              {/* <label htmlFor="fullName">Nome Completo:</label> */}
               <input
                 type="text"
                 id="fullName"
+                className='inputs'
+                placeholder='Nome Completo'
                 value={fullName}
                 onChange={handleChange}
                 required
               />
                {(fullName.length < 10) && <div className="error">
-                <span>O nome deve ter no mínimo 10 caracteres.</span>
+                <span>O nome deve ter no mínimo 10 .</span>
                 </div>}
             </div>
             <div>
-              <label htmlFor="cpf">CPF:</label>
+              {/* <label htmlFor="cpf">CPF:</label> */}
               <input
                 type="text"
                 id="cpf"
+                className='inputs'
+                placeholder='CPF'
                 value={cpf}
                 onChange={handleChange}
                 required
               />
             </div>
             { !/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(cpf)  && <div className="error">
-              <span>O CPF deve estar escrito dessa forma 111.111.111-56.</span>
+              <span>Exemplo de CPF (111.111.111-56).</span>
             </div>}
             <div>
-              <label htmlFor="rg">RG:</label>
+              {/* <label htmlFor="rg">RG:</label> */}
               <input
                 type="text"
                 id="rg"
                 value={rg}
+                className='inputs'
+                placeholder='RG'
                 onChange={handleChange}
                 required
               />
             </div>
             {!/^\d{2}\.\d{3}\.\d{3}-\d{1}$/.test(rg) && <div className="error">
-              <span>O RG deve estar escrito dessa forma 11.222.222-1.</span>
+              <span>Exemplo de RG (11.222.222-1).</span>
               </div>}
             <div>
-              <label htmlFor="age">Idade:</label>
+              {/* <label htmlFor="age">Idade:</label> */}
               <input
                 type="number"
                 id="age"
+                className='inputs'
+                placeholder='Idade'
                 value={age}
                 onChange={handleChange}
                 required
               />
             </div>
             <div>
-              <label htmlFor="gender">Gênero:</label>
+              <label className='text' htmlFor="gender">Gênero:</label>
               <select id="gender" value={gender} onChange={handleChange} required>
                 <option value="">Selecione</option>
                 <option value="masculino">Masculino</option>
@@ -183,49 +196,57 @@ function Signup() {
               </select>
             </div>
             <div>
-              <label htmlFor="userType">Tipo de Usuário:</label>
-              <select id="userType" value={userType} onChange={handleChange} required>
-                <option value="">Selecione</option>
-                <option value="paciente">Paciente</option>
-                <option value="médico">Médico</option>
-                <option value="enfermeiro">Enfermeiro</option>
+              <label className='text' htmlFor="userType">Tipo de Usuário:</label>
+              <select  id="userType" value={userType} onChange={handleChange} required>
+                <option  value="">Selecione</option>
+                <option  value="paciente">Paciente</option>
+                <option  value="médico">Médico</option>
+                <option  value="enfermeiro">Enfermeiro</option>
               </select>
             </div>
             {userType === 'paciente' && (
               <div>
-                <h3>Dados de Saúde</h3>
+                <h3 className='title2'>Dados de Saúde</h3>
                 <div>
-                  <label htmlFor="weight">Peso:</label>
+                  {/* <label htmlFor="weight">Peso:</label> */}
                   <input
                     type="number"
                     id="weight"
+                    placeholder='Peso'
+                    className='inputs'
                     value={weight}
                     onChange={handleChange}
                   />
                 </div>
                 <div>
-                  <label htmlFor="height">Altura:</label>
+                  {/* <label htmlFor="height">Altura:</label> */}
                   <input
                    type="number"
                     id="height"
+                    placeholder='Altura'
+                    className='inputs'
                     value={height}
                     onChange={handleChange}
                   />
                 </div>
                 <div>
-                  <label htmlFor="cholesterol">Colesterol:</label>
+                  {/* <label htmlFor="cholesterol">Colesterol:</label> */}
                   <input
                     type="number"
                     id="cholesterol"
+                    placeholder='Colesterol'
+                    className='inputs'
                     value={cholesterol}
                     onChange={handleChange}
                   />
                 </div>
                 <div>
-                  <label htmlFor="abdominalCircumference">Circunferência Abdominal:</label>
+                  {/* <label htmlFor="abdominalCircumference">Circunferência Abdominal:</label> */}
                   <input
                     type="number"
                     id="abdominalCircumference"
+                    className='inputs'
+                    placeholder='Abdominal'
                     value={abdominalCircumference}
                     onChange={handleChange}
                   />
@@ -234,6 +255,7 @@ function Signup() {
             )}
             <button 
             type="submit" 
+            className='is-success'
             onClick={handleSubmit} 
             disabled={isDisabled}
             >Cadastrar</button>

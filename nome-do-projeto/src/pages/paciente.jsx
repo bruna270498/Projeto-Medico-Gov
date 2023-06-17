@@ -11,7 +11,7 @@ function PatientPage() {
             <Schedule />
             <AppointmentsScheduled />
             <History />
-            <button type="submit">Ir para o Perfil</button>
+            <button className="is-success" type="submit">Ir para o Perfil</button>
         </div>
     )
 }
